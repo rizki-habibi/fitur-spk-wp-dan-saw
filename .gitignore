@@ -22,3 +22,7 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+export_test.xlsx
+routes_output.txt
+*.bak
