@@ -1,0 +1,16 @@
+--- a/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/Worksheet.php
++++ b/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Writer/Xlsx/Worksheet.php
+@@ Around line 1274 (in writeSheetData method, inside formula handling block):
+ 
+ CHANGE 1: Replace the calculatedValue assignment for formulas
+ Find:     $cellValue = $cell->getValue();
+ Replace:  $cellValue = $cell->getOldCalculatedValue();
+ 
+ CHANGE 2: Remove the preCalculateFormulas guard for numeric cached values
+ Find:     if ($this->getParentWriter()->getPreCalculateFormulas() && ...
+ Replace:  if ( ...
+ (Remove only the getPreCalculateFormulas() && part, keep the rest of the condition)
+ 
+ PURPOSE: Without this patch, Excel Protected View shows 0 for all formula cells.
+ The writer ignores setCalculatedValue() cached values and writes <v>0</v>.
+ This patch makes the writer use the cached calculated values.
