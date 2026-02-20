@@ -769,6 +769,10 @@
             <a href="{{ route('export.allinone') }}" class="nav-link">
                 <i class="bi bi-file-earmark-spreadsheet"></i> Export Excel
             </a>
+
+            <a href="{{ route('export.word') }}" class="nav-link">
+                <i class="bi bi-file-earmark-word"></i> Export Word
+            </a>
             @else
             <div class="px-3 py-3">
                 <div class="alert alert-warning mb-0 small py-2">
@@ -787,6 +791,11 @@
                 <button class="btn btn-sm btn-outline-secondary sidebar-toggle" onclick="toggleSidebar()">
                     <i class="bi bi-list"></i>
                 </button>
+                @if(!request()->routeIs('proyek.*'))
+                <a href="{{ route('proyek.index') }}" class="btn btn-sm btn-outline-secondary" title="Kembali ke Proyek">
+                    <i class="bi bi-arrow-left me-1"></i> Proyek
+                </a>
+                @endif
                 <h5 class="mb-0 fw-bold">@yield('page-title', 'Dashboard')</h5>
             </div>
             <div class="d-flex align-items-center gap-2">
